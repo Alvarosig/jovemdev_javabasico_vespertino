@@ -1,4 +1,4 @@
-package imc;
+package imcmeu;
 
 import javax.swing.JOptionPane;
 
@@ -19,7 +19,7 @@ public class Pessoa {
     public void exibirInformacoes() {
     	
     	calculaImc(altura, peso);
-        String mensagem = "Nome: " + nome + "\n" + "Sexo: " + sexo + "\n" + "Peso: " + peso + "\n" + "Altura: " + altura;
+        String mensagem = "Nome: " + nome + "\n" + "Sexo: " + sexo + "\n" + "Peso: " + peso + " Kgs" + "\n" + "Altura: " + altura + " Metros";
         JOptionPane.showMessageDialog(null, mensagem);
     }
 

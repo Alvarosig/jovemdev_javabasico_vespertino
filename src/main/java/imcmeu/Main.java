@@ -1,4 +1,4 @@
-package imc;
+package imcmeu;
 
 import javax.swing.JOptionPane;
 

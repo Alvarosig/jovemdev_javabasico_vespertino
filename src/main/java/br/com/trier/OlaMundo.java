@@ -1,4 +1,4 @@
-package br.com.trier.aula_1;
+package br.com.trier;
 
 public class OlaMundo {
     
