@@ -4,25 +4,28 @@ import javax.swing.JOptionPane;
 
 public class Pessoa {
 
-    protected String nome;
-    protected Character sexo;
-    protected Double peso;
-    protected Double altura;
+    private String nome;
+    private String sexo;
+    private Double peso;
+    private Double altura;
 
     public void solicitarInformacoes() {
         nome = JOptionPane.showInputDialog("Digite o seu nome");
+        sexo = JOptionPane.showInputDialog("Sexo: \n M / F ? ");
         peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o seu peso"));
-        altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a sua altura em centímetros"));
+        altura = Double.parseDouble(JOptionPane.showInputDialog("Digite a sua altura"));
     }
 
     public void exibirInformacoes() {
-        String mensagem = "Nome: " + nome + "\n" + "Peso: " + peso + "\n" + "Altura: " + altura;
+    	
+    	calculaImc(altura, peso);
+        String mensagem = "Nome: " + nome + "\n" + "Sexo: " + sexo + "\n" + "Peso: " + peso + "\n" + "Altura: " + altura;
         JOptionPane.showMessageDialog(null, mensagem);
     }
 
-    public void calculaImc(double imc, double altura, double peso) {
-
-        imc = peso / (altura * altura);
+    public void calculaImc(double altura, double peso) {
+    	
+        double imc = peso / (altura * altura);
 
         if (imc < 18.5) {
             System.out.println(nome + " seu IMC é " + imc + " e você está abaixo do peso");

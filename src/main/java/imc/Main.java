@@ -10,7 +10,7 @@ public class Main extends Pessoa {
 
         while (true) {
             main.solicitarInformacoes();
-            main.calculaImc (main.peso, main.altura());
+            main.exibirInformacoes ();
             String sair = JOptionPane.showInputDialog("Deseja Continuar?");
             if (sair.equalsIgnoreCase("não")) {
                 break;
