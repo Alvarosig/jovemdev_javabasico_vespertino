@@ -23,41 +23,67 @@ public class PrincipalCarro {
             }
             
             if ( op == 2) {  // Irá listar apenas os períodos dos carros
-                int infPeriodo = Integer.parseInt(JOptionPane.showInputDialog("Informe o ano inicial e o final do carro"));
+                int infPeriodoIni = Integer.parseInt(JOptionPane.showInputDialog("Informe o período do ano de início"));
+                int infPeriodoFim = Integer.parseInt(JOptionPane.showInputDialog("Informe o período do ano final"));
                 String ret = "Período\n";
-                for(Carro c : carros) {
-                    if (infPeriodo == c.ano) {
-                        ret += c.imprimirPeriodo();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Não há carros desse ano");
-                    }
+                
+                List<Carro> carroPorPeriodo = new ArrayList<>();
+                for (Carro carro: carros) {
+                	if (infPeriodoIni <= carro.ano && infPeriodoFim >= carro.ano) {
+                		carroPorPeriodo.add(carro);              	
+                	}
                 }
-                JOptionPane.showMessageDialog(null, ret);
+                if (carroPorPeriodo.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não há carros entre esse ano");
+                } else {
+                	for(Carro c : carroPorPeriodo) {
+                            ret += c.imprimirPeriodo();
+                }
+                    JOptionPane.showMessageDialog(null, ret);
+                }
             }
             
             if ( op == 3) {  // Irá listar apenas os carros por marca
-                String infMarca = JOptionPane.showInputDialog("Informe a marca do carro");
-                String ret = "Marcas\n";
-                for(Carro c : carros) {
-                    if (c.marca.equals(infMarca)) {
-                        ret += c.imprimirMarca();
-                    }  
+                String infMarca = JOptionPane.showInputDialog("Qual a marca do carro?");
+                String ret = "";
+                
+                List<Carro> carrosPorMarca = new ArrayList<>();
+                for (Carro carro : carros) {
+                	if (carro.marca.equals(infMarca.toUpperCase())) {
+                		carrosPorMarca.add(carro);		
+                	}
                 }
-                JOptionPane.showMessageDialog(null, ret);                    
-            }
+                if (carrosPorMarca.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não há a respectiva marca");
+                } else {
+                	for(Carro c : carrosPorMarca) {
+                            ret += c.imprimirMarca();
+                        } 
+                	JOptionPane.showMessageDialog(null, ret); 
+                	}
+                }
             
             if ( op == 4) {  // Irá listar os carros por cor
-                String infCor = JOptionPane.showInputDialog("Informe a cor do carro");
-                String ret = "Cores\n";
-                for(Carro c : carros) {
-                    if (c.cor.equals(infCor)) {
-                        ret += c.imprimirCor();
+                int infCor = Integer.parseInt(JOptionPane.showInputDialog("Qual a cor do carro?\n" + "Digite\n  " + "1. Preto \n 2. Branco \n 3. Vermelho \n 4. Cinza \n 5. Amarelo "));
+                String ret = "Lista de carros com as respectivas cores\n";
+                
+                List<Carro> carrosPorCor = new ArrayList<>();
+                for (Carro carro : carros) {
+                    if (carro.cor.ordinal() == infCor - 1) {
+                        carrosPorCor.add(carro);
                     }
                 }
-                JOptionPane.showMessageDialog(null, ret);                    
+                if (carrosPorCor.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Não há a respectiva cor");
+                } else { 
+                	for(Carro c : carrosPorCor) {
+                            ret += c.imprimirCor();   // TA IMPRIMINDO
+                	}
+                	JOptionPane.showMessageDialog(null, ret); 
+                }                   
             }
             
-        }while (op != 5); // input para sair
+        } while (op != 5); // input para sair
     }
 
 }
