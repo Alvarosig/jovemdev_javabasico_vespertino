@@ -12,7 +12,12 @@ public class Carro {
 		marca = JOptionPane.showInputDialog("Marca").toUpperCase();
 		ano = Integer.parseInt(JOptionPane.showInputDialog("Ano"));
 		int recebeCor = Integer.parseInt(JOptionPane.showInputDialog(
-				"Cor do carro, digite\n" + "1. Preto\n2. Branco\n3. Vermelho \n4. Cinza \n5. Amarelo"));
+				"Cor do carro, digite\n" 
+			    + "1. Preto\n"
+		        + "2. Branco\n"
+		        + "3. Vermelho \n"
+		        + "4. Cinza \n"
+		        + "5. Amarelo"));
 
 		switch (recebeCor) {
 		case 1:
