@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class Util {
     
-    static int opMenu() {
+  public static int opMenu() {
         String menu = "1 – Cadastrar Time\r\n"
                 + "2 – Listar todos jogadres de um time\r\n"
                 + "3 – Verificar artilheiros do campeonato\r\n"
