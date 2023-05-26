@@ -15,7 +15,6 @@ public class Util {
     public static void cadastraLivro(List<Autor> autores, List<Livro> livros) {
         String titulo = JOptionPane.showInputDialog("Nome do Livro").toLowerCase();
         double preco = Double.parseDouble(JOptionPane.showInputDialog("Informe o valor do livro"));
-
         Livro livro = new Livro(titulo, preco);
 
         StringBuilder opcoesAutores = new StringBuilder();
@@ -43,7 +42,6 @@ public class Util {
 
             if (contadorAutores < 4) {
                 String resposta = JOptionPane.showInputDialog("Deseja cadastrar mais um autor? (Digite 'sim' ou 'não')");
-
                 if (resposta.equalsIgnoreCase("não")) {
                     adicionarMaisAutores = false;
                 }
@@ -51,7 +49,6 @@ public class Util {
                 JOptionPane.showMessageDialog(null, "Limite máximo de autores atingido (4).");
             }
         }
-
         livros.add(livro);
     }
     
@@ -65,7 +62,6 @@ public class Util {
     
     public static void pesquisarLivrosPorAutor(List<Livro> livros) {
         String autorPesquisado = JOptionPane.showInputDialog("Digite o nome do autor:");
-
         boolean encontrouLivros = false;
         StringBuilder livrosEncontrados = new StringBuilder();
 
@@ -90,7 +86,6 @@ public class Util {
     public static void pesquisarLivrosPorFaixaDeValor(List<Livro> livros) {
         double valorMinimo = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor mínimo:"));
         double valorMaximo = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor máximo:"));
-
         StringBuilder resultado = new StringBuilder("Livros encontrados na faixa de valor de R$ " + valorMinimo + " a R$ " + valorMaximo + ":\n\n");
 
         boolean encontrouLivros = false;
@@ -107,7 +102,6 @@ public class Util {
         if (!encontrouLivros) {
             resultado.append("Nenhum livro encontrado na faixa de valor especificada.");
         }
-
         JOptionPane.showMessageDialog(null, resultado.toString());
     }
     
@@ -126,7 +120,6 @@ public class Util {
             }
             if (autorComCriancas) {
                 resultado.append("Título: ").append(livro.getTitulo()).append("\n");
-                resultado.append("Preço: R$ ").append(livro.getPreco()).append("\n");
                 resultado.append("Autores:\n");
                 for (Autor autor : livro.getAutores()) {
                     resultado.append("- ").append(autor.getNome()).append("\n");
@@ -149,7 +142,6 @@ public class Util {
         String sexoPesquisado = JOptionPane.showInputDialog("Digite o sexo do autor: M / F");
         boolean encontrouLivros = false;
         
-        
         for (Livro livro : livros) {
             boolean autorSexo = false;
             for (Autor autor : livro.getAutores()) {
@@ -160,15 +152,7 @@ public class Util {
                 }
             }
             if (autorSexo) {
-                resultado.append("Título: ").append(livro.getTitulo()).append("\n");
-                resultado.append("Preço: R$ ").append(livro.getPreco()).append("\n");
-                resultado.append("Autores:\n");
-                for (Autor autor : livro.getAutores()) {
-                    if ((sexoPesquisado.equalsIgnoreCase("M") && autor.getSexo() == Sexo.MASCULINO) ||
-                            (sexoPesquisado.equalsIgnoreCase("F") && autor.getSexo() == Sexo.FEMININO)) {
-                        resultado.append("- ").append(autor.getNome()).append("\n");
-                    }
-                }
+                resultado.append("Título: ").append(livro.getTitulo()).append("\n");        
                 resultado.append("\n");
                 encontrouLivros = true;
             }
