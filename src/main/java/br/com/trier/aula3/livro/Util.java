@@ -144,10 +144,43 @@ public class Util {
     }
     
     public static void listarLivrosPorSexoAutores(List<Livro> livros) {
-       // opcao 7 
-    }
+        
+        StringBuilder resultado = new StringBuilder("Livros escritos do sexo selecionado:\n\n");
+        String sexoPesquisado = JOptionPane.showInputDialog("Digite o sexo do autor: M / F");
+        boolean encontrouLivros = false;
+        
+        
+        for (Livro livro : livros) {
+            boolean autorSexo = false;
+            for (Autor autor : livro.getAutores()) {
+                if ((sexoPesquisado.equalsIgnoreCase("M") && autor.getSexo() == Sexo.MASCULINO) ||
+                        (sexoPesquisado.equalsIgnoreCase("F") && autor.getSexo() == Sexo.FEMININO)) {
+                    autorSexo = true;
+                    break;
+                }
+            }
+            if (autorSexo) {
+                resultado.append("Título: ").append(livro.getTitulo()).append("\n");
+                resultado.append("Preço: R$ ").append(livro.getPreco()).append("\n");
+                resultado.append("Autores:\n");
+                for (Autor autor : livro.getAutores()) {
+                    if ((sexoPesquisado.equalsIgnoreCase("M") && autor.getSexo() == Sexo.MASCULINO) ||
+                            (sexoPesquisado.equalsIgnoreCase("F") && autor.getSexo() == Sexo.FEMININO)) {
+                        resultado.append("- ").append(autor.getNome()).append("\n");
+                    }
+                }
+                resultado.append("\n");
+                encontrouLivros = true;
+            }
+        }
 
-    
+        if (!encontrouLivros) {
+            resultado.append("Nenhum livro encontrado com autores do sexo selecionado");
+        }
+
+        JOptionPane.showMessageDialog(null, resultado.toString());
+    }
+ 
     public static int escolheMenu() {
         String menu = "1 - Cadastrar autor\r\n" + "2 - Cadastrar livros\r\n"
                 + "3 - Listar todos os livros cadastrados.\r\n"
