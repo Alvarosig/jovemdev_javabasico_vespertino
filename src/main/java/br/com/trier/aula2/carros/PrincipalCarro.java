@@ -15,7 +15,7 @@ public class PrincipalCarro {
         List<Carro> carros = new ArrayList<Carro>();
         
         int op = 0;
-        
+       /* 
         do {
             op = Util.escolheOpc(); // para cadastrar os carros
             if ( op == 1) {
@@ -111,6 +111,7 @@ public class PrincipalCarro {
             }
             
         } while (op != 5); // input para sair
+        */
     }
 
 }

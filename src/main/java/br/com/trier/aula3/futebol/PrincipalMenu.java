@@ -13,14 +13,14 @@ public class PrincipalMenu {
 		List<Time> times = new ArrayList<Time>();
 		
 		int op = 0;
-		
+	/*	
 		do {
 			op = Util.opMenu();
 			if ( op = 1) {
 				Time time = new Time().cadastrarTime();
                 time.cadastrarTime(time);
 			}
-		} while ( op != 5);
+		} while ( op != 5); */
 	}
 
 }

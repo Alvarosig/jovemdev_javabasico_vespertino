@@ -19,7 +19,7 @@ public class Time {
     
     public Time cadastrarTime () {
     	
-    	jogadorList = new ArrayList <>();
+    	//jogadorList = new ArrayList <>();
         nomeTime = JOptionPane.showInputDialog("Nome do Time");
         
         int opt = 1;
@@ -39,13 +39,13 @@ public class Time {
         
         }   
     
-    	private List <Time> times = new ArrayList<>();
+    //	private List <Time> times = new ArrayList<>();
     	
     	public void listaTime (Time time) {
-    		times.add(time);
+    //		times.add(time);
     	}
     	
-    	public Time buscarTime (String nome) {
+    /*	public Time buscarTime (String nome) {
     		
     		return "";
     	}
@@ -56,7 +56,7 @@ public class Time {
     	
     	public TimeGols buscarTimeGoleador () {
     		List <TimeGols> timeGoleador = new ArrayList<>();
-    	}
+    	} */
     
     }
     
