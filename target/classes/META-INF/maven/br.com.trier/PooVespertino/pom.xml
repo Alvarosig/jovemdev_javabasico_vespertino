@@ -13,5 +13,16 @@
             <version>1.18.26</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+        	<groupId>br.com.trier</groupId>
+        	<artifactId>TestesUnitariosX</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>  
     </dependencies>
 </project>
