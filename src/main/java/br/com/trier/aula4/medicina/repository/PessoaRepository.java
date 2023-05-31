@@ -10,7 +10,7 @@ import br.com.trier.aula4.medicina.models.*;
 
 @AllArgsConstructor
 @Getter
-public class PessoaRepository {
+public class PessoaRepository{
 
     private final List <Pessoa> pessoas = new ArrayList <>();
     

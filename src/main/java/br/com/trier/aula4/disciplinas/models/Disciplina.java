@@ -1,18 +1,16 @@
 package br.com.trier.aula4.disciplinas.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+@RequiredArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Disciplina {
 
-    private String disciplina;
+    private String nomeDisciplina; 
     private int cargaHoraria;
-    private String professor;
-    
-}
+    private Professor professor;
+        
+    }

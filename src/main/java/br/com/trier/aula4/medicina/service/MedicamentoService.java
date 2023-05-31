@@ -49,7 +49,7 @@ public class MedicamentoService {
         
         pessoaRepository.updatePessoa(pessoa);
         
-    }
+    } 
     
     public List <Pessoa> buscarPessoasEMedicamento () {
         return pessoaRepository.getPessoas();
