@@ -3,7 +3,9 @@ package br.com.trier.aula5.banco;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,13 +17,16 @@ public class Conta {
     protected Double saldo;
 
     public boolean depositoConta(double valorDep) {
-        saldo = valorDep + saldo;
-        return true;
+        if (valorDep > 0) {
+            saldo = getSaldo() + valorDep;
+            return true;
+        }
+        return false;
     }
 
     public boolean saqueConta(double valorSac) {
-        if (saldo > 0) {
-            saldo = saldo - valorSac;
+        if (valorSac >= 0 && getSaldo() >= valorSac) {
+            saldo = getSaldo() - valorSac;
             return true;
         } else {
             return false;
@@ -30,13 +35,14 @@ public class Conta {
     }
 
     public boolean transferenciaConta(Conta contaDestino, double valorTra) {
-        if (saldo >= valorTra) {
-            saldo = saldo - valorTra;
-            contaDestino.depositoConta(valorTra);
-            return true;
-        } else {
-            return false;
+        if (saqueConta(valorTra)) {
+            if (contaDestino.depositoConta(valorTra)) {
+                return true;
+            } else {
+                depositoConta(valorTra);
+                return false;
+            }
         }
-
+        return false;
     }
 }

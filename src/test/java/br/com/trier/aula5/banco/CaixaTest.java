@@ -1,54 +1,120 @@
 package br.com.trier.aula5.banco;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
-
 class CaixaTest {
 
-    private Caixa caixa;
-    private Conta contaCc;
-    private ContaEspecial contaEs;
-    private ContaUniversitaria contaUn;
+    private Caixa caixa = new Caixa ();
     
     @BeforeEach
     public void init() {
-        caixa = new Caixa ();
-        contaCc = new Conta (123, 456, "Alvaro", 5000.0);
-        contaEs = new ContaEspecial (432, 421, "Juninho", 10000, 300 );
-        contaUn = new ContaUniversitaria (111, 232, "Robin", 1800.0);
+        caixa.getContas().clear();
+        caixa.adicionarConta(new Conta(5, 3, "Anakin", 1000.0));
+        caixa.adicionarConta(new ContaEspecial(5, 1, "Yoda", 1000.0, 1000.0));
+        caixa.adicionarConta(new ContaUniversitaria(5, 8, "R2D2", 1000.0));
            
     }
     
     @Test
-    @DisplayName ("Teste saque com saldo CCor")
-    void testSaqueComSaldoSuficienteCc() {
-        caixa.saque(contaCc, 500.0);
-        Assertions.assertEquals(4500.0, contaCc.getSaldo());
+    @DisplayName ("Deposito entre CCor, CEsp, Cuni") 
+    void testDeposito() {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1);
+        Conta cu = caixa.getContas().get(2);
+        
+        caixa.deposito(cc, 100);
+        assertEquals(1100.0, cc.getSaldo());
+        caixa.deposito(ce, 1000);
+        assertEquals(2000.0, ce.getSaldo());
+        caixa.deposito(cu, 1000);
+        assertEquals(2000.0, cu.getSaldo());
     }
     
     @Test
-    @DisplayName ("Teste saque com saldo CEsp")
-    void testSaqueComSaldoSuficienteCe() {
-        caixa.saque(contaEs, 10300);
-        Assertions.assertEquals(0, contaEs.getSaldo());
+    @DisplayName ("Saque entre CCor, CEsp, Cuni") 
+    void testSaque() {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1);
+        Conta cu = caixa.getContas().get(2);
+        
+        caixa.saque(cc, 1000.0);
+        assertEquals(0.0, cc.getSaldo());
+
+        caixa.saque(ce, 2000.0);
+        assertEquals(0, ce.getSaldo()); 
+
+        caixa.saque(cu, 1000.0);
+        assertEquals(0.0, cu.getSaldo());
     }
     
     @Test
-    @DisplayName ("Teste saque com saldo CUni")
-    void testSaqueComSaldoSuficienteCu() {
-        caixa.saque(contaUn, 500.0);
-        Assertions.assertEquals(1300.0, contaUn.getSaldo());
+    @DisplayName ("Trânsferencia entre CCor e CEsp") 
+    void testTransferenciaCcCe() {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1); 
+        
+        caixa.transferencia(cc, ce, 1000);
+        assertEquals(0, cc.getSaldo());
+        assertEquals (2000, ce.getSaldo());
+        
+        caixa.transferencia(ce, cc, 1000.0);
+        assertEquals(1000.0, cc.getSaldo());
+        assertEquals (2000.0, ce.getSaldo());
     }
     
     @Test
-    @DisplayName ("Teste saque sem saldo CCor")
+    @DisplayName ("Transferência entre CU e CC")
+    void testTransferenciaCuCc () {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1);  
+        Conta cu = caixa.getContas().get(2);
+        
+        caixa.transferencia(cu, cc, 1000.0);
+        assertEquals(0, cu.getSaldo());
+        assertEquals (2000.0, cc.getSaldo());
+        
+        caixa.transferencia(cc, cu, 2000);
+        assertEquals(0, cc.getSaldo());
+        assertEquals(2000, cu.getSaldo());
+    }
     
+    @Test
+    @DisplayName ("Depósito negativo")
+    void testDepositoNegativo () {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1);  
+        Conta cu = caixa.getContas().get(2);
+        
+        caixa.deposito(cc, -10);
+        assertEquals(1000.0, cc.getSaldo());
+        caixa.deposito(ce, -10);
+        assertEquals(1000.0, ce.getSaldo());
+        caixa.deposito(cu, -10);
+        assertEquals(1000.0, cu.getSaldo());
+    }
+    
+    @Test
+    @DisplayName ("Saque negativo")
+    void testSaqueNegativo () {
+        Conta cc = caixa.getContas().get(0);
+        Conta ce = caixa.getContas().get(1);  
+        Conta cu = caixa.getContas().get(2);
+        
+        caixa.saque(cc, -20.0);
+        assertEquals(1000.0, cc.getSaldo());
+
+        caixa.saque(ce, -30.0);
+        assertEquals(1000, ce.getSaldo()); 
+
+        caixa.saque(cu, -50.0);
+        assertEquals(1000.0, cu.getSaldo());
+    }
+    
+   
     
 
 }
